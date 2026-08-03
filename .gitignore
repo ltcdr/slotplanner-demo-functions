@@ -1,0 +1,26 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# VS Code settings
+.vscode/
+
+# Azure Functions local settings
+local.settings.json
+
+# Azure Functions artifacts
+bin/
+obj/
+.python_packages/
+
+# Deployment ignore file (not versioned)
+.funcignore
+
+# OS junk
+.DS_Store
+Thumbs.db
