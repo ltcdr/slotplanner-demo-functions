@@ -1,5 +1,6 @@
 import logging
 import azure.functions as func
+from azure.identity import ManagedIdentityCredential
 import requests
 import os
 
@@ -21,9 +22,13 @@ def main(myTimer: func.TimerRequest):
         logging.warning("Daily cleanup job is past due!")
 
     try:
+        credential = ManagedIdentityCredential()
+        token = credential.get_token("api://slotplanner-demo")
+        headers = {"Authorization": f"Bearer {token.token}"}
+
         cleanup_url = f"{BACKEND_URL}/admin/cleanup_old"
         logging.info(f"Calling backend: POST {cleanup_url}")
-        cleanup_response = requests.post(cleanup_url, timeout=30)
+        cleanup_response = requests.post(cleanup_url, headers=headers, timeout=30)
 
         logging.info(f"cleanup_old status: {cleanup_response.status_code}")
         logging.info(f"cleanup_old response: {cleanup_response.text}")
