@@ -26,7 +26,7 @@ def main(myTimer: func.TimerRequest):
         token = credential.get_token("api://7354ba0f-dab1-4a16-b16d-2864021087d4/.default")
         headers = {"Authorization": f"Bearer {token.token}"}
 
-        cleanup_url = f"{BACKEND_URL}/admin/cleanup_old"
+        cleanup_url = f"{BACKEND_URL}/demo/admin/cleanup_old"
         logging.info(f"Calling backend: POST {cleanup_url}")
         cleanup_response = requests.post(cleanup_url, headers=headers, timeout=30)
 
