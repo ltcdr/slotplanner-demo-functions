@@ -22,7 +22,7 @@ def main(myTimer: func.TimerRequest):
 
     try:
         credential = ManagedIdentityCredential()
-        token = credential.get_token("api://slotplanner-demo")
+        token = credential.get_token("api://7354ba0f-dab1-4a16-b16d-2864021087d4/.default")
         headers = {"Authorization": f"Bearer {token.token}"}
     
         gen_url = f"{BACKEND_URL}/demo/admin/generate_next_week"
